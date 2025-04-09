@@ -1,5 +1,13 @@
+//core modules
+const readline = require("readline");
+const fs = require("fs");
+const urlReq = require("url");
+const http = require("http");
+
+//custom/user_define modules
+const replaceHtml = require("./modules/replaceHtml");
+
 //reading Input and writing output
-// const readline = require("readline");
 
 // const rl = readline.createInterface({
 //   input: process.stdin,
@@ -18,8 +26,6 @@
 
 //reading and writing file synchronously
 
-// const fs = require("fs");
-
 // let textIn = fs.readFileSync("./file/test.txt", "utf-8");
 // console.log(textIn);
 
@@ -27,8 +33,6 @@
 // fs.writeFileSync("./file/output.txt", content);
 
 //reading and writing file asynchronously
-
-// const fs = require("fs");
 
 // fs.readFile("./file/start.txt", "utf-8", (err1, data1) => {
 //   console.log(data1);
@@ -49,8 +53,7 @@
 // console.log("reading file...");
 
 //creating simple web server
-const fs = require("fs");
-const urlReq = require("url");
+
 const html = fs.readFileSync("./template/index.html", "utf-8");
 //Transforming Json to Html
 const products = JSON.parse(fs.readFileSync("./data/products.json", "utf-8"));
@@ -63,22 +66,20 @@ const productDetailsHtml = fs.readFileSync(
   "utf-8"
 );
 
-function replaceHtml(template, product) {
-  let output = template.replace("%NAME%", product.name);
-  output = output.replace("{{%MODELNAME%}}", product.modeName);
-  output = output.replace("{{%MODELNO%}}", product.modelNumber);
-  output = output.replace("{{%SIZE%}}", product.size);
-  output = output.replace("{{%CAMERA%}}", product.camera);
-  output = output.replace("{{%PRICE%}}", product.price);
-  output = output.replace("{{%COLOR%}}", product.color);
-  output = output.replace("{{%ID%}}", product.id);
-  output = output.replace("{{%DOM%}}", product.ROM);
-  output = output.replace("{{%DESC%}}", product.Description);
+// function replaceHtml(template, product) {
+//   let output = template.replace("%NAME%", product.name);
+//   output = output.replace("{{%MODELNAME%}}", product.modeName);
+//   output = output.replace("{{%MODELNO%}}", product.modelNumber);
+//   output = output.replace("{{%SIZE%}}", product.size);
+//   output = output.replace("{{%CAMERA%}}", product.camera);
+//   output = output.replace("{{%PRICE%}}", product.price);
+//   output = output.replace("{{%COLOR%}}", product.color);
+//   output = output.replace("{{%ID%}}", product.id);
+//   output = output.replace("{{%DOM%}}", product.ROM);
+//   output = output.replace("{{%DESC%}}", product.Description);
 
-  return output;
-}
-
-const http = require("http");
+//   return output;
+// }
 
 //create a server
 const server = http.createServer((request, response) => {
